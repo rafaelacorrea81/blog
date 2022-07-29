@@ -1,4 +1,29 @@
-<html>
+{% extends "base.html" %}
+
+{%block title %} Página Inicial {% endblock %}
+
+{% block content %}
+{% for post in posts %}
+    <article class="post">
+        <header>
+            <div>
+                <h1>{{ post.title }}</h1>
+                <div class="about">
+                    by {{ post.author.username }} on {{ post.created.strftime('%d/%m/%Y') }}
+                </div>
+            </div> 
+        </header>
+        <p class="body"> {{post.body}} </p>
+    </article>
+    {% if not loop.last %}
+        <hr>
+    {% endif %}
+{% else %}
+    <p class="no-posts"> Ops.. There are no posts to display! </p>
+{% endfor %}
+{% endblock%}
+
+<!-- <html>
     <head>
         <title>Contatos</title>
     </head>
@@ -8,4 +33,4 @@
         <h2>rafaela.edtec@gmail.com </h2> 
         <h3>11 1111 1111</h3>
     </body>
-</html>
+</html> -->
